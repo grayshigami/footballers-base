@@ -1,0 +1,79 @@
+{
+  "forwards": [
+    {
+      "id": 1,
+      "name": "Lionel Messi",
+      "nationality": {
+        "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/800px-Flag_of_Argentina.svg.png",
+        "name": "Argentina"
+      },
+      "birthplace": "Rosario",
+      "countryOfBirth": {
+        "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/800px-Flag_of_Argentina.svg.png",
+        "name": "Argentina"
+      },
+      "position": "Right Winger",
+      "height": 1.7,
+      "birthday": "06-24-1987",
+      "caps": 1000,
+      "goals": 720,
+      "intCaps": 150,
+      "intGoals": 104,
+      "team": {
+        "logo": "https://s.hs-data.com/bilder/wappen/mini/30768.gif?fallback=png",
+        "name": "Inter Miami"
+      },
+      "teamCountry": "USA"
+    },
+    {
+      "id": 2,
+      "name": "Neymar",
+      "nationality": {
+        "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png",
+        "name": "Brazil"
+      },
+      "birthplace": "Mogi das Cruzes",
+      "countryOfBirth": {
+        "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png",
+        "name": "Brazil"
+      },
+      "position": "Left Winger",
+      "height": 1.75,
+      "birthday": "05-02-1992",
+      "caps": 600,
+      "goals": 270,
+      "intCaps": 120,
+      "intGoals": 79,
+      "team": {
+        "logo": "https://s.hs-data.com/bilder/wappen/mini/2346.gif?fallback=png",
+        "name": "Al-Hilal FC"
+      },
+      "teamCountry": "KSA"
+    },
+    {
+      "id": 3,
+      "name": "Cristiano Ronaldo",
+      "nationality": {
+        "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/800px-Flag_of_Portugal.svg.png",
+        "name": "Portugal"
+      },
+      "birthplace": "Funchal",
+      "countryOfBirth": {
+        "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/800px-Flag_of_Portugal.svg.png",
+        "name": "Portugal"
+      },
+      "position": "Centre Forward",
+      "height": 1.85,
+      "birthday": "05-02-1985",
+      "caps": 1100,
+      "goals": 790,
+      "intCaps": 190,
+      "intGoals": 125,
+      "team": {
+        "logo": "https://s.hs-data.com/bilder/wappen/mini/2347.gif?fallback=png",
+        "name": "Al-Nassr FC"
+      },
+      "teamCountry": "KSA"
+    }
+  ]
+}

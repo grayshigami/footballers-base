@@ -3,3 +3,26 @@ Brazil: https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil
 Portugal: https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/800px-Flag_of_Portugal.svg.png
 Senegal: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Flag_of_Senegal.svg/1200px-Flag_of_Senegal.svg.png
 Uruguay: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Flag_of_Uruguay.svg/1200px-Flag_of_Uruguay.svg.png
+
+
+name: this.updatedForward.newName,
+                    nationality: {
+                        flag: this.updatedForward.newNationality.flag,
+                        name: this.updatedForward.newNationality.name
+                    },
+                    birthplace: this.updatedForward.newBirthplace,
+                    countryOfBirth: {
+                        flag: this.updatedForward.newCountryOfBirth.flag,
+                        name: this.updatedForward.newCountryOfBirth.name
+                    },
+                    position: this.updatedForward.newPosition,
+                    height: this.updatedForward.newHeight,
+                    caps: this.updatedForward.newCaps,
+                    goals: this.updatedForward.newGoals,
+                    intCaps: this.updatedForward.newIntCaps,
+                    intGoals: this.updatedForward.newIntGoals,
+                    team: {
+                        logo: this.updatedForward.newTeam.logo,
+                        name: this.updatedForward.newTeam.name
+                    },
+                    teamCountry: this.updatedForward.newTeamCountry,

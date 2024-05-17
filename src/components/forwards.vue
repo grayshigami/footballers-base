@@ -14,7 +14,7 @@
                 <label for="name">Name</label>
                 <input type="text" id="name" v-model="newForward.name">
                 <label for="nationalityName">Nationality name</label>
-                <input type="text" id="nationalityName" v-model="newForward.nationality.name">
+                <input type="selector" id="nationalityName" v-model="newForward.nationality.name">
             </div>
             <label for="nationalityFlag">Nationality flag</label>
             <input type="text" id="nationalityFlag" v-model="newForward.nationality.flag">
@@ -46,8 +46,8 @@
                     <input type="text" id="team" v-model="newForward.team.name">
                     <label for="teamLogo">Team logo</label>
                     <input type="text" id="teamLogo" v-model="newForward.team.logo">
-                    <label for="teamCountry">TeamCountry</label>
-                    <input type="text" id="teamCountry" v-model="newForward.teamCountry">
+                    <label for="tc">Team country</label>
+                    <input type="text" id="tc" v-model="newForward.tc">
                 </div>
             </div>
         </div>
@@ -57,51 +57,94 @@
     <pv-dialog class="fb-dialog" header="Update forward" v-model:visible="updateVisible" modal>
         <div class="inside-dialog">
             <div class="two-inp">
-                <label for="name">Name</label>
-                <input type="text" id="name" v-model="newForward.name">
-                <label for="nationalityName">Nationality name</label>
-                <input type="text" id="nationalityName" v-model="newForward.nationality.name">
+                <label for="newName">Name</label>
+                <input type="text" id="newName" v-model="updatedForward.name">
+                <label for="newNationalityName">Nationality name</label>
+                <input type="text" id="newNationalityName" v-model="updatedForward.nationality.name">
             </div>
-            <label for="nationalityFlag">Nationality flag</label>
-            <input type="text" id="nationalityFlag" v-model="newForward.nationality.flag">
-            <label for="countryOfBirthFlag">Country of birth flag</label>
-            <input type="text" id="countryOfBirthFlag" v-model="newForward.countryOfBirth.flag">
+            <label for="newNationalityFlag">Nationality flag</label>
+            <input type="text" id="newNationalityFlag" v-model="updatedForward.nationality.flag">
+            <label for="newCountryOfBirthFlag">Country of birth flag</label>
+            <input type="text" id="newCountryOfBirthFlag" v-model="updatedForward.countryOfBirth.flag">
             <div class="divider">
                 <div class="left">
-                    <label for="birthplace">Birthplace</label>
-                    <input type="text" id="birthplace" v-model="newForward.birthplace">
-                    <label for="countryOfBirth">Country of birth</label>
-                    <input type="text" id="countryOfBirth" v-model="newForward.countryOfBirth.name">
-                    <label for="position">Position</label>
-                    <input type="text" id="position" v-model="newForward.position">
-                    <label for="height">Height</label>
-                    <input type="number" id="height" v-model="newForward.height">
-                    <label for="birthday">Birthday</label>
-                    <input type="text" id="birthday" v-model="newForward.birthday">
-                    <label for="caps">Caps</label>
-                    <input type="number" id="caps" v-model="newForward.caps">
+                    <label for="newBirthplace">Birthplace</label>
+                    <input type="text" id="newBirthplace" v-model="updatedForward.birthplace">
+                    <label for="newCountryOfBirth">Country of birth</label>
+                    <input type="text" id="newCountryOfBirth" v-model="updatedForward.countryOfBirth.name">
+                    <label for="newPosition">Position</label>
+                    <input type="text" id="newPosition" v-model="updatedForward.position">
+                    <label for="newHeight">Height</label>
+                    <input type="number" id="newHeight" v-model="updatedForward.height">
+                    <label for="newBirthday">Birthday</label>
+                    <input type="text" id="newBirthday" v-model="updatedForward.birthday">
+                    <label for="newCaps">Caps</label>
+                    <input type="number" id="newCaps" v-model="updatedForward.caps">
                 </div>
                 <div class="right">
-                    <label for="goals">Goals</label>
-                    <input type="number" id="goals" v-model="newForward.goals">
-                    <label for="intCaps">IntCaps</label>
-                    <input type="number" id="intCaps" v-model="newForward.intCaps">
-                    <label for="intGoals">IntGoals</label>
-                    <input type="number" id="intGoals" v-model="newForward.intGoals">
-                    <label for="team">Team</label>
-                    <input type="text" id="team" v-model="newForward.team.name">
-                    <label for="teamLogo">Team logo</label>
-                    <input type="text" id="teamLogo" v-model="newForward.team.logo">
-                    <label for="teamCountry">TeamCountry</label>
-                    <input type="text" id="teamCountry" v-model="newForward.teamCountry">
+                    <label for="newGoals">Goals</label>
+                    <input type="number" id="newGoals" v-model="updatedForward.goals">
+                    <label for="newIntCaps">IntCaps</label>
+                    <input type="number" id="newIntCaps" v-model="updatedForward.intCaps">
+                    <label for="newIntGoals">IntGoals</label>
+                    <input type="number" id="newIntGoals" v-model="updatedForward.intGoals">
+                    <label for="newTeam">Team</label>
+                    <input type="text" id="newTeam" v-model="updatedForward.team.name">
+                    <label for="newTeamLogo">Team logo</label>
+                    <input type="text" id="newTeamLogo" v-model="updatedForward.team.logo">
+                    <label for="newtc">Team country</label>
+                    <input type="text" id="newtc" v-model="updatedForward.tc">
                 </div>
             </div>
         </div>
         <button @click="updateVisible = false">Cancel</button>
-        <button>Update</button>
+        <button @click="updateForward">Update</button>
     </pv-dialog>
     <table class="fw-table">
         <thead>
+            <tr>
+                <th>*</th>
+                <th>
+                    <input type="text">
+                </th>
+                <th>
+                    <input type="text">
+                </th>
+                <th>
+                    <input type="text">
+                </th>
+                <th>
+                    <input type="text">
+                </th>
+                <th>
+                    <input type="text">
+                </th>
+                <th>
+                    <input type="text" class="gci">
+                </th>
+                <th>
+                    <input type="text" class="igci">
+                </th>
+                <th>
+                    <input type="text" class="gci">
+                </th>
+                <th>
+                    <input type="text" class="gci">
+                </th>
+                <th>
+                    <input type="text" class="igci">
+                </th>
+                <th>
+                    <input type="text" class="igci">
+                </th>
+                <th>
+                    <input type="text">
+                </th>
+                <th>
+                    <input type="text" class="it">
+                </th>
+                <th>*</th>
+            </tr>
             <tr>
                 <th>*</th>
                 <th @click="sortByColumn('name')">
@@ -191,10 +234,10 @@
                     class="fa-solid fa-sort-down"></i>
                     <i v-else class="fa-solid fa-sort header-icon"></i>
                 </th>
-                <th @click="sortByColumn('teamCountry')">
-                    TeamCountry
-                    <i v-if="sortBy === 'teamCountry' && sortDirection === 'asc'" class="fa-solid fa-sort-up"></i>
-                    <i v-else-if="sortBy === 'teamCountry' && sortDirection === 'desc'" 
+                <th @click="sortByColumn('tc')">
+                    TC
+                    <i v-if="sortBy === 'tc' && sortDirection === 'asc'" class="fa-solid fa-sort-up"></i>
+                    <i v-else-if="sortBy === 'tc' && sortDirection === 'desc'" 
                     class="fa-solid fa-sort-down"></i>
                     <i v-else class="fa-solid fa-sort header-icon"></i>
                 </th>
@@ -227,9 +270,9 @@
                     <img :src="forward.team.logo" alt="" width="19" height="20">
                     {{ forward.team.name }}
                 </td>
-                <td>{{ forward.teamCountry }}</td>
+                <td>{{ forward.tc }}</td>
                 <td>
-                    <i class="fa-solid fa-pen-to-square edit-button" @click="updateVisible = true"></i>
+                    <i class="fa-solid fa-pen-to-square edit-button" @click="showEditDialog(forward)"></i>
                 </td>
             </tr>
         </tbody>
@@ -243,6 +286,7 @@ export default {
     data() {
         return {
             forwards: [],
+            forward: {},
             newForward: {
                 name: '',
                 nationality: {
@@ -265,7 +309,31 @@ export default {
                     logo: '',
                     name: ''
                 },
-                teamCountry: ''
+                tc: ''
+            },
+            updatedForward: {
+                name: '',
+                nationality: {
+                    flag: '',
+                    name: ''
+                },
+                birthplace: '',
+                countryOfBirth: {
+                    flag: '',
+                    name: ''
+                },
+                position: '',
+                height: 0.00,
+                birthday: '',
+                caps: 0,
+                goals: 0,
+                intCaps: 0,
+                intGoals: 0,
+                team: {
+                    logo: '',
+                    name: ''
+                },
+                tc: ''
             },
             selectedForwards: [],
             visible: false,
@@ -281,34 +349,94 @@ export default {
         async insertForward() {
             this.visible = false;
             try {
-                await axios.post('http://localhost:3000/forwards', this.newForward);
+                await axios.post('http://localhost:3000/api/v1/forwards', this.newForward);
                 this.getForwards();
                 this.newForward = {
-                    name: '',
-                    nationality: {
+                    newName: '',
+                    newNationality: {
                         flag: '',
                         name: ''
                     },
-                    birthplace: '',
-                    countryOfBirth: {
+                    newBirthplace: '',
+                    newCountryOfBirth: {
                         flag: '',
                         name: ''
                     },
-                    position: '',
-                    height: 0.00,
-                    birthday: '',
-                    caps: 0,
-                    goals: 0,
-                    intCaps: 0,
-                    intGoals: 0,
-                    team: {
+                    newPosition: '',
+                    newHeight: 0.00,
+                    newBirthday: '',
+                    newCaps: 0,
+                    newGoals: 0,
+                    newIntCaps: 0,
+                    newIntGoals: 0,
+                    newTeam: {
                         logo: '',
                         name: ''
                     },
-                    teamCountry: ''
+                    newTc: ''
                 };
             } catch (error) {
                 console.error('Error inserting forward:', error);
+            }
+        },
+        showEditDialog(forward) {
+            this.forward = { ...forward };
+            this.updatedForward.name = forward.name;
+            this.updatedForward.nationality.flag = forward.nationality.flag;
+            this.updatedForward.nationality.name = forward.nationality.name;
+            this.updatedForward.birthplace = forward.birthplace;
+            this.updatedForward.countryOfBirth.flag = forward.countryOfBirth.flag;
+            this.updatedForward.countryOfBirth.name = forward.countryOfBirth.name;
+            this.updatedForward.position = forward.position;
+            this.updatedForward.height = forward.height;
+            this.updatedForward.birthday = forward.birthday;
+            this.updatedForward.caps = forward.caps;
+            this.updatedForward.goals = forward.goals;
+            this.updatedForward.intCaps = forward.intCaps;
+            this.updatedForward.intGoals = forward.intGoals;
+            this.updatedForward.team.logo = forward.team.logo;
+            this.updatedForward.team.name = forward.team.name;
+            this.updatedForward.tc = forward.tc;
+            this.updateVisible = true;
+        },
+        async updateForward() {
+            this.updateVisible = false;
+            try {
+                const response = await axios.put(`http://localhost:3000/api/v1/forwards/${this.forward.id}`, {
+                    ...this.forward,
+                    name: this.updatedForward.name,
+                    nationality: {
+                        flag: this.updatedForward.nationality.flag,
+                        name: this.updatedForward.nationality.name
+                    },
+                    birthplace: this.updatedForward.birthplace,
+                    countryOfBirth: {
+                        flag: this.updatedForward.countryOfBirth.flag,
+                        name: this.updatedForward.countryOfBirth.name
+                    },
+                    position: this.updatedForward.position,
+                    height: this.updatedForward.height,
+                    birthday: this.updatedForward.birthday,
+                    caps: this.updatedForward.caps,
+                    goals: this.updatedForward.goals,
+                    intCaps: this.updatedForward.intCaps,
+                    intGoals: this.updatedForward.intGoals,
+                    team: {
+                        logo: this.updatedForward.team.logo,
+                        name: this.updatedForward.team.name
+                    },
+                    tc: this.updatedForward.tc
+                });
+
+                const index = this.forwards.findIndex(f => f.id === this.forward.id);
+
+                if (index !== -1) {
+                    this.forwards.splice(index, 1, response.data);
+                }
+
+                this.forwards = [...this.forwards];
+            } catch (error) {
+                console.error('Error saving changes:', error);
             }
         },
         getForwards() {
@@ -443,22 +571,47 @@ h2 {
 
 .fw-table {
     font-family: arial, sans-serif;
-    margin-left: 5px;
     margin-top: 20px;
+    box-sizing: border-box;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+}
+
+th input {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.gci {
+    width: 60px;
+}
+
+.igci {
+    width: 70px;
+}
+
+.it {
+    width: 50px;
 }
 
 .fw-table td, th {
     text-align: left;
-    padding: 5px;
 }
 
 th:hover {
     cursor: pointer;
 }
 
+th {
+    font-size: 14px;
+    padding: 5px;
+}
+
 td {
     font-size: 14px;
     border-top: 1px solid black;
+    padding: 4px;
 }
 
 .selector {

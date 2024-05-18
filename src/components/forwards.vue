@@ -110,39 +110,39 @@
                 <th>-</th>
                 <th>-</th>
                 <th>
-                    <select name="" id="">
-                        <option value="">Equals</option>
-                        <option value="">Greater</option>
-                        <option value="">Lower</option>
+                    <select name="" id="" v-model="filters.heightComparing">
+                        <option value="equal" selected>Equal</option>
+                        <option value="greater">Greater</option>
+                        <option value="lower">Lower</option>
                     </select>
                 </th>
                 <th>-</th>
                 <th>
-                    <select name="" id="">
-                        <option value="">Equals</option>
-                        <option value="">Greater</option>
-                        <option value="">Lower</option>
+                    <select name="" id="" v-model="filters.capsComparing">
+                        <option value="equal">Equal</option>
+                        <option value="greater">Greater</option>
+                        <option value="lower">Lower</option>
                     </select>
                 </th>
                 <th>
-                    <select name="" id="">
-                        <option value="">Equals</option>
-                        <option value="">Greater</option>
-                        <option value="">Lower</option>
+                    <select name="" id="" v-model="filters.goalsComparing">
+                        <option value="equal">Equal</option>
+                        <option value="greater">Greater</option>
+                        <option value="lower">Lower</option>
                     </select>
                 </th>
                 <th>
-                    <select name="" id="">
-                        <option value="">Equals</option>
-                        <option value="">Greater</option>
-                        <option value="">Lower</option>
+                    <select name="" id="" v-model="filters.intCapsComparing">
+                        <option value="equal">Equal</option>
+                        <option value="greater">Greater</option>
+                        <option value="lower">Lower</option>
                     </select>
                 </th>
                 <th>
-                    <select name="" id="">
-                        <option value="">Equals</option>
-                        <option value="">Greater</option>
-                        <option value="">Lower</option>
+                    <select name="" id="" v-model="filters.intGoalsComparing">
+                        <option value="equal">Equal</option>
+                        <option value="greater">Greater</option>
+                        <option value="lower">Lower</option>
                     </select>
                 </th>
                 <th>-</th>
@@ -402,7 +402,11 @@ export default {
                     name: ''
                 },
                 tc: '',
-                numComparing: 'greater'
+                heightComparing: 'equal',
+                capsComparing: 'equal',
+                goalsComparing: 'equal',
+                intCapsComparing: 'equal',
+                intGoalsComparing: 'equal'
             },
             selectedForwards: [],
             visible: false,
@@ -430,22 +434,95 @@ export default {
                 const filterIntGoals = this.filters.intGoals;
                 const filterTeam = this.filters.team.name.toLowerCase();
                 const filterTc = this.filters.tc.toLowerCase();
+                const heightComparing = this.filters.heightComparing;
+                const capsComparing = this.filters.capsComparing;
+                const goalsComparing = this.filters.goalsComparing;
+                const intCapsComparing = this.filters.intCapsComparing;
+                const intGoalsComparing = this.filters.intGoalsComparing;
 
-                return (
-                    (!filterName || forward.name.toLowerCase().includes(filterName)) &&
-                    (!filterNationality || forward.nationality.name.toLowerCase().includes(filterNationality)) &&
-                    (!filterBirthplace || forward.birthplace.toLowerCase().includes(filterBirthplace)) &&
-                    (!filterCountryOfBirth || forward.countryOfBirth.name.toLowerCase().includes(filterCountryOfBirth)) &&
-                    (!filterPosition || forward.position.toLowerCase().includes(filterPosition)) &&
-                    (!filterHeight || forward.height.toString().includes(filterHeight.toString())) &&
-                    (!filterBirthday || forward.birthday.toLowerCase().includes(filterBirthday)) &&
-                    (!filterCaps || forward.caps.toString().includes(filterCaps.toString())) &&
-                    (!filterGoals || forward.goals.toString().includes(filterGoals.toString())) &&
-                    (!filterIntCaps || forward.intCaps.toString().includes(filterIntCaps.toString())) &&
-                    (!filterIntGoals || forward.intGoals.toString().includes(filterIntGoals.toString())) &&
-                    (!filterTeam || forward.team.name.toLowerCase().includes(filterTeam)) &&
-                    (!filterTc || forward.tc.toLowerCase().includes(filterTc))
-                );
+                const matchesFilterName = !filterName || forward.name.toLowerCase().includes(filterName);
+                const matchesFilterNationality = !filterNationality || forward.nationality.name.toLowerCase()
+                .includes(filterNationality);
+                const matchesFilterBirthplace = !filterBirthplace || forward.birthplace.toLowerCase()
+                .includes(filterBirthplace);
+                const matchesFilterCountryOfBirth = !filterCountryOfBirth || forward.countryOfBirth.name.toLowerCase()
+                .includes(filterCountryOfBirth);
+                const matchesFilterPosition = !filterPosition || forward.position.toLowerCase().includes(filterPosition);
+                const matchesFilterBirthday = !filterBirthday || forward.birthday.toLowerCase().includes(filterBirthday);
+                const matchesFilterTeam = !filterTeam || forward.team.name.toLowerCase().includes(filterTeam);
+                const matchesFilterTc = !filterTc || forward.tc.toLowerCase().includes(filterTc);
+
+                
+                let matchesFilterHeight = true;
+                let matchesFilterCaps = true;
+                let matchesFilterGoals = true;
+                let matchesFilterIntCaps = true;
+                let matchesFilterIntGoals = true;
+
+                if (filterHeight) {
+                    const height = parseFloat(filterHeight);
+
+                    if (heightComparing === 'greater') {
+                        matchesFilterHeight = forward.height > height;
+                    } else if (heightComparing === 'lower') {
+                        matchesFilterHeight = forward.height < height;
+                    } else if (heightComparing === 'equal') {
+                        matchesFilterHeight = forward.height === height;
+                    }
+                }
+
+                if (filterCaps) {
+                    const caps = parseInt(filterCaps);
+
+                    if (capsComparing === 'greater') {
+                        matchesFilterCaps = forward.caps > caps;
+                    } else if (capsComparing === 'lower') {
+                        matchesFilterCaps = forward.caps < caps;
+                    } else if (capsComparing === 'equal') {
+                        matchesFilterCaps = forward.caps === caps;
+                    }
+                }
+
+                if (filterGoals) {
+                    const goals = parseInt(filterGoals);
+
+                    if (goalsComparing === 'greater') {
+                        matchesFilterGoals = forward.goals > goals;
+                    } else if (goalsComparing === 'lower') {
+                        matchesFilterGoals = forward.goals < goals;
+                    } else if (goalsComparing === 'equal') {
+                        matchesFilterGoals = forward.goals === goals;
+                    }
+                }
+
+                if (filterIntCaps) {
+                    const intCaps = parseInt(filterIntCaps);
+
+                    if (intCapsComparing === 'greater') {
+                        matchesFilterIntCaps = forward.intCaps > intCaps;
+                    } else if (intCapsComparing === 'lower') {
+                        matchesFilterIntCaps = forward.intCaps < intCaps;
+                    } else if (intCapsComparing === 'equal') {
+                        matchesFilterIntCaps = forward.intCaps === intCaps;
+                    }
+                }
+
+                if (filterIntGoals) {
+                    const intGoals = parseInt(filterIntGoals);
+
+                    if (intGoalsComparing === 'greater') {
+                        matchesFilterIntGoals = forward.intGoals > intGoals;
+                    } else if (intGoalsComparing === 'lower') {
+                        matchesFilterIntGoals = forward.intGoals < intGoals;
+                    } else if (intGoalsComparing === 'equal') {
+                        matchesFilterIntGoals = forward.intGoals === intGoals;
+                    }
+                }
+
+                return matchesFilterName && matchesFilterNationality && matchesFilterBirthplace &&
+                matchesFilterCountryOfBirth && matchesFilterPosition && matchesFilterHeight && matchesFilterBirthday &&
+                matchesFilterCaps && matchesFilterGoals && matchesFilterIntCaps && matchesFilterIntGoals &&
+                matchesFilterTeam && matchesFilterTc;
             });
         },
     },

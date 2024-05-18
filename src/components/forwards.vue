@@ -103,45 +103,92 @@
     <table class="fw-table">
         <thead>
             <tr>
+                <th>-</th>
+                <th>-</th>
+                <th>-</th>
+                <th>-</th>
+                <th>-</th>
+                <th>-</th>
+                <th>
+                    <select name="" id="">
+                        <option value="">Equals</option>
+                        <option value="">Greater</option>
+                        <option value="">Lower</option>
+                    </select>
+                </th>
+                <th>-</th>
+                <th>
+                    <select name="" id="">
+                        <option value="">Equals</option>
+                        <option value="">Greater</option>
+                        <option value="">Lower</option>
+                    </select>
+                </th>
+                <th>
+                    <select name="" id="">
+                        <option value="">Equals</option>
+                        <option value="">Greater</option>
+                        <option value="">Lower</option>
+                    </select>
+                </th>
+                <th>
+                    <select name="" id="">
+                        <option value="">Equals</option>
+                        <option value="">Greater</option>
+                        <option value="">Lower</option>
+                    </select>
+                </th>
+                <th>
+                    <select name="" id="">
+                        <option value="">Equals</option>
+                        <option value="">Greater</option>
+                        <option value="">Lower</option>
+                    </select>
+                </th>
+                <th>-</th>
+                <th>-</th>
+                <th>-</th>
+            </tr>
+            <tr>
                 <th>*</th>
                 <th>
-                    <input type="text">
+                    <input type="text" v-model="filters.name">
                 </th>
                 <th>
-                    <input type="text">
+                    <input type="text" v-model="filters.nationality.name">
                 </th>
                 <th>
-                    <input type="text">
+                    <input type="text" v-model="filters.birthplace">
                 </th>
                 <th>
-                    <input type="text">
+                    <input type="text" v-model="filters.countryOfBirth.name">
                 </th>
                 <th>
-                    <input type="text">
+                    <input type="text" v-model="filters.position">
                 </th>
                 <th>
-                    <input type="text" class="gci">
+                    <input type="text" class="gci" v-model="filters.height">
                 </th>
                 <th>
-                    <input type="text" class="igci">
+                    <input type="text" class="igci" v-model="filters.birthday">
                 </th>
                 <th>
-                    <input type="text" class="gci">
+                    <input type="text" class="gci" v-model="filters.caps">
                 </th>
                 <th>
-                    <input type="text" class="gci">
+                    <input type="text" class="gci" v-model="filters.goals">
                 </th>
                 <th>
-                    <input type="text" class="igci">
+                    <input type="text" class="igci" v-model="filters.intCaps">
                 </th>
                 <th>
-                    <input type="text" class="igci">
+                    <input type="text" class="igci" v-model="filters.intGoals">
                 </th>
                 <th>
-                    <input type="text">
+                    <input type="text" v-model="filters.team.name">
                 </th>
                 <th>
-                    <input type="text" class="it">
+                    <input type="text" class="it" v-model="filters.tc">
                 </th>
                 <th>*</th>
             </tr>
@@ -245,7 +292,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="forward in forwards" :key="forward.id">
+            <tr v-for="forward in filteredForwards" :key="forward.id">
                 <td>
                     <input type="checkbox" v-model="selectedForwards" :value="forward.id" class="selector">
                 </td>
@@ -335,6 +382,28 @@ export default {
                 },
                 tc: ''
             },
+            filters: {
+                name: '',
+                nationality: {
+                    name: ''
+                },
+                birthplace: '',
+                countryOfBirth: {
+                    name: ''
+                },
+                position: '',
+                height: null,
+                birthday: '',
+                caps: null,
+                goals: null,
+                intCaps: null,
+                intGoals: null,
+                team: {
+                    name: ''
+                },
+                tc: '',
+                numComparing: 'greater'
+            },
             selectedForwards: [],
             visible: false,
             updateVisible: false,
@@ -344,6 +413,41 @@ export default {
     },
     mounted() {
         this.getForwards();
+    },
+    computed: {
+        filteredForwards() {
+            return this.forwards.filter(forward => {
+                const filterName = this.filters.name.toLowerCase();
+                const filterNationality = this.filters.nationality.name.toLowerCase();
+                const filterBirthplace = this.filters.birthplace.toLowerCase();
+                const filterCountryOfBirth = this.filters.countryOfBirth.name.toLowerCase();
+                const filterPosition = this.filters.position.toLowerCase();
+                const filterHeight = this.filters.height;
+                const filterBirthday = this.filters.birthday.toLowerCase();
+                const filterCaps = this.filters.caps;
+                const filterGoals = this.filters.goals;
+                const filterIntCaps = this.filters.intCaps;
+                const filterIntGoals = this.filters.intGoals;
+                const filterTeam = this.filters.team.name.toLowerCase();
+                const filterTc = this.filters.tc.toLowerCase();
+
+                return (
+                    (!filterName || forward.name.toLowerCase().includes(filterName)) &&
+                    (!filterNationality || forward.nationality.name.toLowerCase().includes(filterNationality)) &&
+                    (!filterBirthplace || forward.birthplace.toLowerCase().includes(filterBirthplace)) &&
+                    (!filterCountryOfBirth || forward.countryOfBirth.name.toLowerCase().includes(filterCountryOfBirth)) &&
+                    (!filterPosition || forward.position.toLowerCase().includes(filterPosition)) &&
+                    (!filterHeight || forward.height.toString().includes(filterHeight.toString())) &&
+                    (!filterBirthday || forward.birthday.toLowerCase().includes(filterBirthday)) &&
+                    (!filterCaps || forward.caps.toString().includes(filterCaps.toString())) &&
+                    (!filterGoals || forward.goals.toString().includes(filterGoals.toString())) &&
+                    (!filterIntCaps || forward.intCaps.toString().includes(filterIntCaps.toString())) &&
+                    (!filterIntGoals || forward.intGoals.toString().includes(filterIntGoals.toString())) &&
+                    (!filterTeam || forward.team.name.toLowerCase().includes(filterTeam)) &&
+                    (!filterTc || forward.tc.toLowerCase().includes(filterTc))
+                );
+            });
+        },
     },
     methods: {
         async insertForward() {
@@ -459,6 +563,7 @@ export default {
                 });
             })
         },
+        applyFilters() {},
         sortByColumn(column) {
             if (column == this.sortBy) {
                 this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
@@ -475,14 +580,14 @@ export default {
                     this.forwards.sort(function(a, b) { return b - a });
             } else {
                 this.forwards.sort((a, b) => {
-                if (this.sortDirection === 'asc') {
-                    return a[column] > b[column] ? 1 : -1;
-                } else {
-                    return a[column] < b[column] ? 1 : -1;
-                }
-            });
-        }
+                    if (this.sortDirection === 'asc') {
+                        return a[column] > b[column] ? 1 : -1;
+                    } else {
+                        return a[column] < b[column] ? 1 : -1;
+                    }
+                });
             }
+        }
     }
 }
 </script>
@@ -581,6 +686,7 @@ h2 {
 th input {
     box-sizing: border-box;
     width: 100%;
+    padding: 4px;
 }
 
 .gci {

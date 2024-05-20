@@ -334,30 +334,7 @@ export default {
         return {
             footballers: [],
             footballer: {},
-            newFootballer: {
-                name: '',
-                nationality: {
-                    flag: '',
-                    name: ''
-                },
-                birthplace: '',
-                countryOfBirth: {
-                    flag: '',
-                    name: ''
-                },
-                position: '',
-                height: 0.00,
-                birthday: '',
-                caps: 0,
-                goals: 0,
-                intCaps: 0,
-                intGoals: 0,
-                team: {
-                    logo: '',
-                    name: ''
-                },
-                tc: ''
-            },
+            newFootballer: this.restartNewFootballer(),
             updatedFootballer: {
                 name: '',
                 nationality: {
@@ -527,35 +504,38 @@ export default {
         },
     },
     methods: {
+        restartNewFootballer() {
+            return {
+                name: '',
+                nationality: {
+                    flag: '',
+                    name: ''
+                },
+                birthplace: '',
+                countryOfBirth: {
+                    flag: '',
+                    name: ''
+                },
+                position: '',
+                height: 0.00,
+                birthday: '',
+                caps: 0,
+                goals: 0,
+                intCaps: 0,
+                intGoals: 0,
+                team: {
+                    logo: '',
+                    name: ''
+                },
+                tc: ''
+            }
+        },
         async insertFootballer() {
             this.visible = false;
             try {
-                await axios.post('http://localhost:3000/api/v1/forwards', this.newFootballer);
-                this.getFootballers();
-                this.newFootballer = {
-                    newName: '',
-                    newNationality: {
-                        flag: '',
-                        name: ''
-                    },
-                    newBirthplace: '',
-                    newCountryOfBirth: {
-                        flag: '',
-                        name: ''
-                    },
-                    newPosition: '',
-                    newHeight: 0.00,
-                    newBirthday: '',
-                    newCaps: 0,
-                    newGoals: 0,
-                    newIntCaps: 0,
-                    newIntGoals: 0,
-                    newTeam: {
-                        logo: '',
-                        name: ''
-                    },
-                    newTc: ''
-                };
+                const response = await axios.post('http://localhost:3000/api/v1/forwards', this.newFootballer);
+                this.footballers.push(response.data);
+                this.newFootballer = this.restartNewFootballer();
             } catch (error) {
                 console.error('Error inserting forward:', error);
             }

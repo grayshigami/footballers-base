@@ -26,8 +26,6 @@
                     <input type="text" id="birthplace" v-model="newFootballer.birthplace">
                     <label for="countryOfBirth">Country of birth</label>
                     <input type="text" id="countryOfBirth" v-model="newFootballer.countryOfBirth.name">
-                    <label for="position">Position</label>
-                    <input type="text" id="position" v-model="newFootballer.position">
                     <label for="height">Height</label>
                     <input type="number" id="height" v-model="newFootballer.height">
                     <label for="birthday">Birthday</label>
@@ -36,18 +34,16 @@
                     <input type="number" id="caps" v-model="newFootballer.caps">
                 </div>
                 <div class="right">
-                    <label for="goals">Goals</label>
-                    <input type="number" id="goals" v-model="newFootballer.goals">
                     <label for="intCaps">IntCaps</label>
                     <input type="number" id="intCaps" v-model="newFootballer.intCaps">
-                    <label for="intGoals">IntGoals</label>
-                    <input type="number" id="intGoals" v-model="newFootballer.intGoals">
                     <label for="team">Team</label>
                     <input type="text" id="team" v-model="newFootballer.team.name">
                     <label for="teamLogo">Team logo</label>
                     <input type="text" id="teamLogo" v-model="newFootballer.team.logo">
                     <label for="tc">Team country</label>
                     <input type="text" id="tc" v-model="newFootballer.tc">
+                    <label for="starter">Starter</label>
+                    <input type="text" id="starter" v-model="newFootballer.starter">
                 </div>
             </div>
         </div>
@@ -72,8 +68,6 @@
                     <input type="text" id="newBirthplace" v-model="updatedFootballer.birthplace">
                     <label for="newCountryOfBirth">Country of birth</label>
                     <input type="text" id="newCountryOfBirth" v-model="updatedFootballer.countryOfBirth.name">
-                    <label for="newPosition">Position</label>
-                    <input type="text" id="newPosition" v-model="updatedFootballer.position">
                     <label for="newHeight">Height</label>
                     <input type="number" id="newHeight" v-model="updatedFootballer.height">
                     <label for="newBirthday">Birthday</label>
@@ -82,18 +76,16 @@
                     <input type="number" id="newCaps" v-model="updatedFootballer.caps">
                 </div>
                 <div class="right">
-                    <label for="newGoals">Goals</label>
-                    <input type="number" id="newGoals" v-model="updatedFootballer.goals">
                     <label for="newIntCaps">IntCaps</label>
                     <input type="number" id="newIntCaps" v-model="updatedFootballer.intCaps">
-                    <label for="newIntGoals">IntGoals</label>
-                    <input type="number" id="newIntGoals" v-model="updatedFootballer.intGoals">
                     <label for="newTeam">Team</label>
                     <input type="text" id="newTeam" v-model="updatedFootballer.team.name">
                     <label for="newTeamLogo">Team logo</label>
                     <input type="text" id="newTeamLogo" v-model="updatedFootballer.team.logo">
                     <label for="newtc">Team country</label>
                     <input type="text" id="newtc" v-model="updatedFootballer.tc">
+                    <label for="newStarter">Starter</label>
+                    <input type="text" id="newStarter" v-model="updatedFootballer.starter">
                 </div>
             </div>
         </div>
@@ -103,7 +95,6 @@
     <table class="fw-table">
         <thead>
             <tr>
-                <th>-</th>
                 <th>-</th>
                 <th>-</th>
                 <th>-</th>
@@ -125,26 +116,13 @@
                     </select>
                 </th>
                 <th>
-                    <select name="" id="" v-model="filters.goalsComparing">
-                        <option value="equal">Equal</option>
-                        <option value="greater">Greater</option>
-                        <option value="lower">Lower</option>
-                    </select>
-                </th>
-                <th>
                     <select name="" id="" v-model="filters.intCapsComparing">
                         <option value="equal">Equal</option>
                         <option value="greater">Greater</option>
                         <option value="lower">Lower</option>
                     </select>
                 </th>
-                <th>
-                    <select name="" id="" v-model="filters.intGoalsComparing">
-                        <option value="equal">Equal</option>
-                        <option value="greater">Greater</option>
-                        <option value="lower">Lower</option>
-                    </select>
-                </th>
+                <th>-</th>
                 <th>-</th>
                 <th>-</th>
                 <th>-</th>
@@ -164,9 +142,6 @@
                     <input type="text" v-model="filters.countryOfBirth.name">
                 </th>
                 <th>
-                    <input type="text" v-model="filters.position">
-                </th>
-                <th>
                     <input type="text" class="gci" v-model="filters.height">
                 </th>
                 <th>
@@ -176,19 +151,16 @@
                     <input type="text" class="gci" v-model="filters.caps">
                 </th>
                 <th>
-                    <input type="text" class="gci" v-model="filters.goals">
-                </th>
-                <th>
                     <input type="text" class="igci" v-model="filters.intCaps">
-                </th>
-                <th>
-                    <input type="text" class="igci" v-model="filters.intGoals">
                 </th>
                 <th>
                     <input type="text" v-model="filters.team.name">
                 </th>
                 <th>
                     <input type="text" class="it" v-model="filters.tc">
+                </th>
+                <th>
+                    <input type="text" class="igci" v-model="filters.starter">
                 </th>
                 <th>*</th>
             </tr>
@@ -225,13 +197,6 @@
                     class="fa-solid fa-sort-down"></i>
                     <i v-else class="fa-solid fa-sort header-icon"></i>
                 </th>
-                <th @click="sortByColumn('position')">
-                    Position
-                    <i v-if="sortBy === 'position' && sortDirection === 'asc'" class="fa-solid fa-sort-up"></i>
-                    <i v-else-if="sortBy === 'position' && sortDirection === 'desc'"
-                    class="fa-solid fa-sort-down"></i>
-                    <i v-else class="fa-solid fa-sort header-icon"></i>
-                </th>
                 <th @click="sortByColumn('height')">
                     Height
                     <i v-if="sortBy === 'height' && sortDirection === 'asc'" class="fa-solid fa-sort-up"></i>
@@ -253,24 +218,10 @@
                     class="fa-solid fa-sort-down"></i>
                     <i v-else class="fa-solid fa-sort header-icon"></i>
                 </th>
-                <th @click="sortByColumn('goals')">
-                    Goals
-                    <i v-if="sortBy === 'goals' && sortDirection === 'asc'" class="fa-solid fa-sort-up"></i>
-                    <i v-else-if="sortBy === 'goals' && sortDirection === 'desc'" 
-                    class="fa-solid fa-sort-down"></i>
-                    <i v-else class="fa-solid fa-sort header-icon"></i>
-                </th>
                 <th @click="sortByColumn('intCaps')">
                     IntCaps
                     <i v-if="sortBy === 'intCaps' && sortDirection === 'asc'" class="fa-solid fa-sort-up"></i>
                     <i v-else-if="sortBy === 'intCaps' && sortDirection === 'desc'" 
-                    class="fa-solid fa-sort-down"></i>
-                    <i v-else class="fa-solid fa-sort header-icon"></i>
-                </th>
-                <th @click="sortByColumn('intGoals')">
-                    IntGoals
-                    <i v-if="sortBy === 'intGoals' && sortDirection === 'asc'" class="fa-solid fa-sort-up"></i>
-                    <i v-else-if="sortBy === 'intGoals' && sortDirection === 'desc'" 
                     class="fa-solid fa-sort-down"></i>
                     <i v-else class="fa-solid fa-sort header-icon"></i>
                 </th>
@@ -283,6 +234,13 @@
                 </th>
                 <th @click="sortByColumn('tc')">
                     TC
+                    <i v-if="sortBy === 'tc' && sortDirection === 'asc'" class="fa-solid fa-sort-up"></i>
+                    <i v-else-if="sortBy === 'tc' && sortDirection === 'desc'" 
+                    class="fa-solid fa-sort-down"></i>
+                    <i v-else class="fa-solid fa-sort header-icon"></i>
+                </th>
+                <th @click="sortByColumn('starter')">
+                    Starter
                     <i v-if="sortBy === 'tc' && sortDirection === 'asc'" class="fa-solid fa-sort-up"></i>
                     <i v-else-if="sortBy === 'tc' && sortDirection === 'desc'" 
                     class="fa-solid fa-sort-down"></i>
@@ -306,18 +264,16 @@
                     <img :src="footballer.countryOfBirth.flag" alt="" width="20" height="15">
                     {{ footballer.countryOfBirth.name }}
                 </td>
-                <td>{{ footballer.position }}</td>
                 <td>{{ footballer.height.toFixed(2) }}</td>
                 <td>{{ footballer.birthday }}</td>
                 <td>{{ footballer.caps }}</td>
-                <td>{{ footballer.goals }}</td>
                 <td>{{ footballer.intCaps }}</td>
-                <td>{{ footballer.intGoals }}</td>
                 <td>
                     <img :src="footballer.team.logo" alt="" width="19" height="20">
                     {{ footballer.team.name }}
                 </td>
                 <td>{{ footballer.tc }}</td>
+                <td>{{ footballer.starter }}</td>
                 <td>
                     <i class="fa-solid fa-pen-to-square edit-button" @click="showEditDialog(footballer)"></i>
                 </td>
@@ -334,30 +290,7 @@ export default {
         return {
             footballers: [],
             footballer: {},
-            newFootballer: {
-                name: '',
-                nationality: {
-                    flag: '',
-                    name: ''
-                },
-                birthplace: '',
-                countryOfBirth: {
-                    flag: '',
-                    name: ''
-                },
-                position: '',
-                height: 0.00,
-                birthday: '',
-                caps: 0,
-                goals: 0,
-                intCaps: 0,
-                intGoals: 0,
-                team: {
-                    logo: '',
-                    name: ''
-                },
-                tc: ''
-            },
+            newFootballer: this.restartNewFootballer(),
             updatedFootballer: {
                 name: '',
                 nationality: {
@@ -369,18 +302,16 @@ export default {
                     flag: '',
                     name: ''
                 },
-                position: '',
                 height: 0.00,
                 birthday: '',
                 caps: 0,
-                goals: 0,
                 intCaps: 0,
-                intGoals: 0,
                 team: {
                     logo: '',
                     name: ''
                 },
-                tc: ''
+                tc: '',
+                starter: ''
             },
             filters: {
                 name: '',
@@ -391,22 +322,18 @@ export default {
                 countryOfBirth: {
                     name: ''
                 },
-                position: '',
                 height: null,
                 birthday: '',
                 caps: null,
-                goals: null,
                 intCaps: null,
-                intGoals: null,
                 team: {
                     name: ''
                 },
                 tc: '',
+                starter: '',
                 heightComparing: 'equal',
                 capsComparing: 'equal',
-                goalsComparing: 'equal',
                 intCapsComparing: 'equal',
-                intGoalsComparing: 'equal'
             },
             selectedFootballers: [],
             visible: false,
@@ -425,20 +352,16 @@ export default {
                 const filterNationality = this.filters.nationality.name.toLowerCase();
                 const filterBirthplace = this.filters.birthplace.toLowerCase();
                 const filterCountryOfBirth = this.filters.countryOfBirth.name.toLowerCase();
-                const filterPosition = this.filters.position.toLowerCase();
                 const filterHeight = this.filters.height;
                 const filterBirthday = this.filters.birthday.toLowerCase();
                 const filterCaps = this.filters.caps;
-                const filterGoals = this.filters.goals;
                 const filterIntCaps = this.filters.intCaps;
-                const filterIntGoals = this.filters.intGoals;
                 const filterTeam = this.filters.team.name.toLowerCase();
                 const filterTc = this.filters.tc.toLowerCase();
+                const filterStarter = this.filters.starter.toLowerCase();
                 const heightComparing = this.filters.heightComparing;
                 const capsComparing = this.filters.capsComparing;
-                const goalsComparing = this.filters.goalsComparing;
                 const intCapsComparing = this.filters.intCapsComparing;
-                const intGoalsComparing = this.filters.intGoalsComparing;
 
                 const matchesFilterName = !filterName || footballer.name.toLowerCase().includes(filterName);
                 const matchesFilterNationality = !filterNationality || footballer.nationality.name.toLowerCase()
@@ -447,17 +370,15 @@ export default {
                 .includes(filterBirthplace);
                 const matchesFilterCountryOfBirth = !filterCountryOfBirth || footballer.countryOfBirth.name.toLowerCase()
                 .includes(filterCountryOfBirth);
-                const matchesFilterPosition = !filterPosition || footballer.position.toLowerCase().includes(filterPosition);
                 const matchesFilterBirthday = !filterBirthday || footballer.birthday.toLowerCase().includes(filterBirthday);
                 const matchesFilterTeam = !filterTeam || footballer.team.name.toLowerCase().includes(filterTeam);
                 const matchesFilterTc = !filterTc || footballer.tc.toLowerCase().includes(filterTc);
+                const matchesFilterStarter = !filterStarter || footballer.starter.toLowerCase().includes(filterStarter);
 
                 
                 let matchesFilterHeight = true;
                 let matchesFilterCaps = true;
-                let matchesFilterGoals = true;
                 let matchesFilterIntCaps = true;
-                let matchesFilterIntGoals = true;
 
                 if (filterHeight) {
                     const height = parseFloat(filterHeight);
@@ -483,18 +404,6 @@ export default {
                     }
                 }
 
-                if (filterGoals) {
-                    const goals = parseInt(filterGoals);
-
-                    if (goalsComparing === 'greater') {
-                        matchesFilterGoals = footballer.goals > goals;
-                    } else if (goalsComparing === 'lower') {
-                        matchesFilterGoals = footballer.goals < goals;
-                    } else if (goalsComparing === 'equal') {
-                        matchesFilterGoals = footballer.goals === goals;
-                    }
-                }
-
                 if (filterIntCaps) {
                     const intCaps = parseInt(filterIntCaps);
 
@@ -507,55 +416,44 @@ export default {
                     }
                 }
 
-                if (filterIntGoals) {
-                    const intGoals = parseInt(filterIntGoals);
-
-                    if (intGoalsComparing === 'greater') {
-                        matchesFilterIntGoals = footballer.intGoals > intGoals;
-                    } else if (intGoalsComparing === 'lower') {
-                        matchesFilterIntGoals = footballer.intGoals < intGoals;
-                    } else if (intGoalsComparing === 'equal') {
-                        matchesFilterIntGoals = footballer.intGoals === intGoals;
-                    }
-                }
-
                 return matchesFilterName && matchesFilterNationality && matchesFilterBirthplace &&
-                matchesFilterCountryOfBirth && matchesFilterPosition && matchesFilterHeight && matchesFilterBirthday &&
-                matchesFilterCaps && matchesFilterGoals && matchesFilterIntCaps && matchesFilterIntGoals &&
-                matchesFilterTeam && matchesFilterTc;
+                matchesFilterCountryOfBirth && matchesFilterHeight && matchesFilterBirthday &&
+                matchesFilterCaps && matchesFilterIntCaps && matchesFilterTeam && matchesFilterTc && 
+                matchesFilterStarter;
             });
         },
     },
     methods: {
+        restartNewFootballer() {
+            return {
+                name: '',
+                nationality: {
+                    flag: '',
+                    name: ''
+                },
+                birthplace: '',
+                countryOfBirth: {
+                    flag: '',
+                    name: ''
+                },
+                height: 0.00,
+                birthday: '',
+                caps: 0,
+                intCaps: 0,
+                team: {
+                    logo: '',
+                    name: ''
+                },
+                tc: '',
+                starter: ''
+            }
+        },
         async insertFootballer() {
             this.visible = false;
             try {
-                await axios.post('http://localhost:3000/api/v1/goalkeepers', this.newFootballer);
-                this.getFootballers();
-                this.newFootballer = {
-                    newName: '',
-                    newNationality: {
-                        flag: '',
-                        name: ''
-                    },
-                    newBirthplace: '',
-                    newCountryOfBirth: {
-                        flag: '',
-                        name: ''
-                    },
-                    newPosition: '',
-                    newHeight: 0.00,
-                    newBirthday: '',
-                    newCaps: 0,
-                    newGoals: 0,
-                    newIntCaps: 0,
-                    newIntGoals: 0,
-                    newTeam: {
-                        logo: '',
-                        name: ''
-                    },
-                    newTc: ''
-                };
+                const response = await axios.post('http://localhost:3000/api/v1/goalkeepers', this.newFootballer);
+                this.footballers.push(response.data);
+                this.newFootballer = this.restartNewFootballer();
             } catch (error) {
                 console.error('Error inserting goalkeeper:', error);
             }
@@ -568,16 +466,14 @@ export default {
             this.updatedFootballer.birthplace = footballer.birthplace;
             this.updatedFootballer.countryOfBirth.flag = footballer.countryOfBirth.flag;
             this.updatedFootballer.countryOfBirth.name = footballer.countryOfBirth.name;
-            this.updatedFootballer.position = footballer.position;
             this.updatedFootballer.height = footballer.height;
             this.updatedFootballer.birthday = footballer.birthday;
             this.updatedFootballer.caps = footballer.caps;
-            this.updatedFootballer.goals = footballer.goals;
             this.updatedFootballer.intCaps = footballer.intCaps;
-            this.updatedFootballer.intGoals = footballer.intGoals;
             this.updatedFootballer.team.logo = footballer.team.logo;
             this.updatedFootballer.team.name = footballer.team.name;
             this.updatedFootballer.tc = footballer.tc;
+            this.updatedFootballer.starter = footballer.starter;
             this.updateVisible = true;
         },
         async updateFootballer() {
@@ -595,18 +491,16 @@ export default {
                         flag: this.updatedFootballer.countryOfBirth.flag,
                         name: this.updatedFootballer.countryOfBirth.name
                     },
-                    position: this.updatedFootballer.position,
                     height: this.updatedFootballer.height,
                     birthday: this.updatedFootballer.birthday,
                     caps: this.updatedFootballer.caps,
-                    goals: this.updatedFootballer.goals,
                     intCaps: this.updatedFootballer.intCaps,
-                    intGoals: this.updatedFootballer.intGoals,
                     team: {
                         logo: this.updatedFootballer.team.logo,
                         name: this.updatedFootballer.team.name
                     },
-                    tc: this.updatedFootballer.tc
+                    tc: this.updatedFootballer.tc,
+                    starter: this.updatedFootballer.starter
                 });
 
                 const index = this.footballers.findIndex(f => f.id === this.footballer.id);
@@ -648,11 +542,9 @@ export default {
                 this.sortDirection = 'asc';
             }
 
-            if ((column == "Height" || column == "Caps" || column == "Goals" || column == "IntCaps" ||
-                column == "IntGoals") && this.sortDirection == 'asc') {
+            if ((column == "Height" || column == "Caps" || column == "IntCaps") && this.sortDirection == 'asc') {
                     this.footballers.sort(function(a, b) { return a - b });
-            } else if ((column == "Height" || column == "Caps" || column == "Goals" || column == "IntCaps" ||
-                column == "IntGoals") && this.sortDirection == 'desc') {
+            } else if ((column == "Height" || column == "Caps" || column == "IntCaps") && this.sortDirection == 'desc') {
                     this.footballers.sort(function(a, b) { return b - a });
             } else {
                 this.footballers.sort((a, b) => {

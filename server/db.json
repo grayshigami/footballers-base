@@ -124,9 +124,58 @@
       },
       "tc": "",
       "id": 5
+    },
+    {
+      "name": "",
+      "nationality": {
+        "flag": "",
+        "name": ""
+      },
+      "birthplace": "",
+      "countryOfBirth": {
+        "flag": "",
+        "name": ""
+      },
+      "position": "",
+      "height": 0,
+      "birthday": "",
+      "caps": 0,
+      "goals": 0,
+      "intCaps": 0,
+      "intGoals": 0,
+      "team": {
+        "logo": "",
+        "name": ""
+      },
+      "tc": "",
+      "id": 6
     }
   ],
   "midfielders": [],
   "defenders": [],
-  "goalkeepers": []
+  "goalkeepers": [
+    {
+      "name": "a",
+      "nationality": {
+        "flag": "c",
+        "name": "b"
+      },
+      "birthplace": "f",
+      "countryOfBirth": {
+        "flag": "d",
+        "name": "g"
+      },
+      "height": 0,
+      "birthday": "h",
+      "caps": 0,
+      "intCaps": 0,
+      "team": {
+        "logo": "j",
+        "name": "i"
+      },
+      "tc": "k",
+      "starter": "b",
+      "id": 1
+    }
+  ]
 }

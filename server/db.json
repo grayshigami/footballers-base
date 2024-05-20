@@ -81,7 +81,7 @@
         "flag": "f",
         "name": "Dominican Republic"
       },
-      "birthplace": "f",
+      "birthplace": "fg",
       "countryOfBirth": {
         "flag": "",
         "name": "g"
@@ -125,5 +125,8 @@
       "tc": "",
       "id": 5
     }
-  ]
+  ],
+  "midfielders": [],
+  "defenders": [],
+  "goalkeepers": []
 }

@@ -4,7 +4,7 @@
         <i class="fa-solid fa-plus"></i>
         Create
     </button>
-    <button class="delete-button" @click="deleteSelectedForwards">
+    <button class="delete-button" @click="deleteSelectedFootballers">
         <i class="fa-solid fa-trash"></i>
         Delete
     </button>
@@ -12,93 +12,93 @@
         <div class="inside-dialog">
             <div class="two-inp">
                 <label for="name">Name</label>
-                <input type="text" id="name" v-model="newForward.name">
+                <input type="text" id="name" v-model="newFootballer.name">
                 <label for="nationalityName">Nationality name</label>
-                <input type="selector" id="nationalityName" v-model="newForward.nationality.name">
+                <input type="selector" id="nationalityName" v-model="newFootballer.nationality.name">
             </div>
             <label for="nationalityFlag">Nationality flag</label>
-            <input type="text" id="nationalityFlag" v-model="newForward.nationality.flag">
+            <input type="text" id="nationalityFlag" v-model="newFootballer.nationality.flag">
             <label for="countryOfBirthFlag">Country of birth flag</label>
-            <input type="text" id="countryOfBirthFlag" v-model="newForward.countryOfBirth.flag">
+            <input type="text" id="countryOfBirthFlag" v-model="newFootballer.countryOfBirth.flag">
             <div class="divider">
                 <div class="left">
                     <label for="birthplace">Birthplace</label>
-                    <input type="text" id="birthplace" v-model="newForward.birthplace">
+                    <input type="text" id="birthplace" v-model="newFootballer.birthplace">
                     <label for="countryOfBirth">Country of birth</label>
-                    <input type="text" id="countryOfBirth" v-model="newForward.countryOfBirth.name">
+                    <input type="text" id="countryOfBirth" v-model="newFootballer.countryOfBirth.name">
                     <label for="position">Position</label>
-                    <input type="text" id="position" v-model="newForward.position">
+                    <input type="text" id="position" v-model="newFootballer.position">
                     <label for="height">Height</label>
-                    <input type="number" id="height" v-model="newForward.height">
+                    <input type="number" id="height" v-model="newFootballer.height">
                     <label for="birthday">Birthday</label>
-                    <input type="text" id="birthday" v-model="newForward.birthday">
+                    <input type="text" id="birthday" v-model="newFootballer.birthday">
                     <label for="caps">Caps</label>
-                    <input type="number" id="caps" v-model="newForward.caps">
+                    <input type="number" id="caps" v-model="newFootballer.caps">
                 </div>
                 <div class="right">
                     <label for="goals">Goals</label>
-                    <input type="number" id="goals" v-model="newForward.goals">
+                    <input type="number" id="goals" v-model="newFootballer.goals">
                     <label for="intCaps">IntCaps</label>
-                    <input type="number" id="intCaps" v-model="newForward.intCaps">
+                    <input type="number" id="intCaps" v-model="newFootballer.intCaps">
                     <label for="intGoals">IntGoals</label>
-                    <input type="number" id="intGoals" v-model="newForward.intGoals">
+                    <input type="number" id="intGoals" v-model="newFootballer.intGoals">
                     <label for="team">Team</label>
-                    <input type="text" id="team" v-model="newForward.team.name">
+                    <input type="text" id="team" v-model="newFootballer.team.name">
                     <label for="teamLogo">Team logo</label>
-                    <input type="text" id="teamLogo" v-model="newForward.team.logo">
+                    <input type="text" id="teamLogo" v-model="newFootballer.team.logo">
                     <label for="tc">Team country</label>
-                    <input type="text" id="tc" v-model="newForward.tc">
+                    <input type="text" id="tc" v-model="newFootballer.tc">
                 </div>
             </div>
         </div>
         <button @click="visible = false">Cancel</button>
-        <button @click="insertForward">Insert</button>
+        <button @click="insertFootballer">Insert</button>
     </pv-dialog>
     <pv-dialog class="fb-dialog" header="Update forward" v-model:visible="updateVisible" modal>
         <div class="inside-dialog">
             <div class="two-inp">
                 <label for="newName">Name</label>
-                <input type="text" id="newName" v-model="updatedForward.name">
+                <input type="text" id="newName" v-model="updatedFootballer.name">
                 <label for="newNationalityName">Nationality name</label>
-                <input type="text" id="newNationalityName" v-model="updatedForward.nationality.name">
+                <input type="text" id="newNationalityName" v-model="updatedFootballer.nationality.name">
             </div>
             <label for="newNationalityFlag">Nationality flag</label>
-            <input type="text" id="newNationalityFlag" v-model="updatedForward.nationality.flag">
+            <input type="text" id="newNationalityFlag" v-model="updatedFootballer.nationality.flag">
             <label for="newCountryOfBirthFlag">Country of birth flag</label>
-            <input type="text" id="newCountryOfBirthFlag" v-model="updatedForward.countryOfBirth.flag">
+            <input type="text" id="newCountryOfBirthFlag" v-model="updatedFootballer.countryOfBirth.flag">
             <div class="divider">
                 <div class="left">
                     <label for="newBirthplace">Birthplace</label>
-                    <input type="text" id="newBirthplace" v-model="updatedForward.birthplace">
+                    <input type="text" id="newBirthplace" v-model="updatedFootballer.birthplace">
                     <label for="newCountryOfBirth">Country of birth</label>
-                    <input type="text" id="newCountryOfBirth" v-model="updatedForward.countryOfBirth.name">
+                    <input type="text" id="newCountryOfBirth" v-model="updatedFootballer.countryOfBirth.name">
                     <label for="newPosition">Position</label>
-                    <input type="text" id="newPosition" v-model="updatedForward.position">
+                    <input type="text" id="newPosition" v-model="updatedFootballer.position">
                     <label for="newHeight">Height</label>
-                    <input type="number" id="newHeight" v-model="updatedForward.height">
+                    <input type="number" id="newHeight" v-model="updatedFootballer.height">
                     <label for="newBirthday">Birthday</label>
-                    <input type="text" id="newBirthday" v-model="updatedForward.birthday">
+                    <input type="text" id="newBirthday" v-model="updatedFootballer.birthday">
                     <label for="newCaps">Caps</label>
-                    <input type="number" id="newCaps" v-model="updatedForward.caps">
+                    <input type="number" id="newCaps" v-model="updatedFootballer.caps">
                 </div>
                 <div class="right">
                     <label for="newGoals">Goals</label>
-                    <input type="number" id="newGoals" v-model="updatedForward.goals">
+                    <input type="number" id="newGoals" v-model="updatedFootballer.goals">
                     <label for="newIntCaps">IntCaps</label>
-                    <input type="number" id="newIntCaps" v-model="updatedForward.intCaps">
+                    <input type="number" id="newIntCaps" v-model="updatedFootballer.intCaps">
                     <label for="newIntGoals">IntGoals</label>
-                    <input type="number" id="newIntGoals" v-model="updatedForward.intGoals">
+                    <input type="number" id="newIntGoals" v-model="updatedFootballer.intGoals">
                     <label for="newTeam">Team</label>
-                    <input type="text" id="newTeam" v-model="updatedForward.team.name">
+                    <input type="text" id="newTeam" v-model="updatedFootballer.team.name">
                     <label for="newTeamLogo">Team logo</label>
-                    <input type="text" id="newTeamLogo" v-model="updatedForward.team.logo">
+                    <input type="text" id="newTeamLogo" v-model="updatedFootballer.team.logo">
                     <label for="newtc">Team country</label>
-                    <input type="text" id="newtc" v-model="updatedForward.tc">
+                    <input type="text" id="newtc" v-model="updatedFootballer.tc">
                 </div>
             </div>
         </div>
         <button @click="updateVisible = false">Cancel</button>
-        <button @click="updateForward">Update</button>
+        <button @click="updateFootballer">Update</button>
     </pv-dialog>
     <table class="fw-table">
         <thead>
@@ -292,34 +292,34 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="forward in filteredForwards" :key="forward.id">
+            <tr v-for="footballer in filteredFootballers" :key="footballer.id">
                 <td>
-                    <input type="checkbox" v-model="selectedForwards" :value="forward.id" class="selector">
+                    <input type="checkbox" v-model="selectedFootballers" :value="footballer.id" class="selector">
                 </td>
-                <td>{{ forward.name }}</td>
+                <td>{{ footballer.name }}</td>
                 <td>
-                    <img :src="forward.nationality.flag" alt="" width="20" height="15">
-                    {{ forward.nationality.name }}
+                    <img :src="footballer.nationality.flag" alt="" width="20" height="15">
+                    {{ footballer.nationality.name }}
                 </td>
-                <td>{{ forward.birthplace }}</td>
+                <td>{{ footballer.birthplace }}</td>
                 <td>
-                    <img :src="forward.countryOfBirth.flag" alt="" width="20" height="15">
-                    {{ forward.countryOfBirth.name }}
+                    <img :src="footballer.countryOfBirth.flag" alt="" width="20" height="15">
+                    {{ footballer.countryOfBirth.name }}
                 </td>
-                <td>{{ forward.position }}</td>
-                <td>{{ forward.height.toFixed(2) }}</td>
-                <td>{{ forward.birthday }}</td>
-                <td>{{ forward.caps }}</td>
-                <td>{{ forward.goals }}</td>
-                <td>{{ forward.intCaps }}</td>
-                <td>{{ forward.intGoals }}</td>
+                <td>{{ footballer.position }}</td>
+                <td>{{ footballer.height.toFixed(2) }}</td>
+                <td>{{ footballer.birthday }}</td>
+                <td>{{ footballer.caps }}</td>
+                <td>{{ footballer.goals }}</td>
+                <td>{{ footballer.intCaps }}</td>
+                <td>{{ footballer.intGoals }}</td>
                 <td>
-                    <img :src="forward.team.logo" alt="" width="19" height="20">
-                    {{ forward.team.name }}
+                    <img :src="footballer.team.logo" alt="" width="19" height="20">
+                    {{ footballer.team.name }}
                 </td>
-                <td>{{ forward.tc }}</td>
+                <td>{{ footballer.tc }}</td>
                 <td>
-                    <i class="fa-solid fa-pen-to-square edit-button" @click="showEditDialog(forward)"></i>
+                    <i class="fa-solid fa-pen-to-square edit-button" @click="showEditDialog(footballer)"></i>
                 </td>
             </tr>
         </tbody>
@@ -332,9 +332,9 @@ export default {
     name: 'forwards-component',
     data() {
         return {
-            forwards: [],
-            forward: {},
-            newForward: {
+            footballers: [],
+            footballer: {},
+            newFootballer: {
                 name: '',
                 nationality: {
                     flag: '',
@@ -358,7 +358,7 @@ export default {
                 },
                 tc: ''
             },
-            updatedForward: {
+            updatedFootballer: {
                 name: '',
                 nationality: {
                     flag: '',
@@ -408,7 +408,7 @@ export default {
                 intCapsComparing: 'equal',
                 intGoalsComparing: 'equal'
             },
-            selectedForwards: [],
+            selectedFootballers: [],
             visible: false,
             updateVisible: false,
             sortBy: '',
@@ -416,11 +416,11 @@ export default {
         };
     },
     mounted() {
-        this.getForwards();
+        this.getFootballers();
     },
     computed: {
-        filteredForwards() {
-            return this.forwards.filter(forward => {
+        filteredFootballers() {
+            return this.footballers.filter(footballer => {
                 const filterName = this.filters.name.toLowerCase();
                 const filterNationality = this.filters.nationality.name.toLowerCase();
                 const filterBirthplace = this.filters.birthplace.toLowerCase();
@@ -440,17 +440,17 @@ export default {
                 const intCapsComparing = this.filters.intCapsComparing;
                 const intGoalsComparing = this.filters.intGoalsComparing;
 
-                const matchesFilterName = !filterName || forward.name.toLowerCase().includes(filterName);
-                const matchesFilterNationality = !filterNationality || forward.nationality.name.toLowerCase()
+                const matchesFilterName = !filterName || footballer.name.toLowerCase().includes(filterName);
+                const matchesFilterNationality = !filterNationality || footballer.nationality.name.toLowerCase()
                 .includes(filterNationality);
-                const matchesFilterBirthplace = !filterBirthplace || forward.birthplace.toLowerCase()
+                const matchesFilterBirthplace = !filterBirthplace || footballer.birthplace.toLowerCase()
                 .includes(filterBirthplace);
-                const matchesFilterCountryOfBirth = !filterCountryOfBirth || forward.countryOfBirth.name.toLowerCase()
+                const matchesFilterCountryOfBirth = !filterCountryOfBirth || footballer.countryOfBirth.name.toLowerCase()
                 .includes(filterCountryOfBirth);
-                const matchesFilterPosition = !filterPosition || forward.position.toLowerCase().includes(filterPosition);
-                const matchesFilterBirthday = !filterBirthday || forward.birthday.toLowerCase().includes(filterBirthday);
-                const matchesFilterTeam = !filterTeam || forward.team.name.toLowerCase().includes(filterTeam);
-                const matchesFilterTc = !filterTc || forward.tc.toLowerCase().includes(filterTc);
+                const matchesFilterPosition = !filterPosition || footballer.position.toLowerCase().includes(filterPosition);
+                const matchesFilterBirthday = !filterBirthday || footballer.birthday.toLowerCase().includes(filterBirthday);
+                const matchesFilterTeam = !filterTeam || footballer.team.name.toLowerCase().includes(filterTeam);
+                const matchesFilterTc = !filterTc || footballer.tc.toLowerCase().includes(filterTc);
 
                 
                 let matchesFilterHeight = true;
@@ -463,11 +463,11 @@ export default {
                     const height = parseFloat(filterHeight);
 
                     if (heightComparing === 'greater') {
-                        matchesFilterHeight = forward.height > height;
+                        matchesFilterHeight = footballer.height > height;
                     } else if (heightComparing === 'lower') {
-                        matchesFilterHeight = forward.height < height;
+                        matchesFilterHeight = footballer.height < height;
                     } else if (heightComparing === 'equal') {
-                        matchesFilterHeight = forward.height === height;
+                        matchesFilterHeight = footballer.height === height;
                     }
                 }
 
@@ -475,11 +475,11 @@ export default {
                     const caps = parseInt(filterCaps);
 
                     if (capsComparing === 'greater') {
-                        matchesFilterCaps = forward.caps > caps;
+                        matchesFilterCaps = footballer.caps > caps;
                     } else if (capsComparing === 'lower') {
-                        matchesFilterCaps = forward.caps < caps;
+                        matchesFilterCaps = footballer.caps < caps;
                     } else if (capsComparing === 'equal') {
-                        matchesFilterCaps = forward.caps === caps;
+                        matchesFilterCaps = footballer.caps === caps;
                     }
                 }
 
@@ -487,11 +487,11 @@ export default {
                     const goals = parseInt(filterGoals);
 
                     if (goalsComparing === 'greater') {
-                        matchesFilterGoals = forward.goals > goals;
+                        matchesFilterGoals = footballer.goals > goals;
                     } else if (goalsComparing === 'lower') {
-                        matchesFilterGoals = forward.goals < goals;
+                        matchesFilterGoals = footballer.goals < goals;
                     } else if (goalsComparing === 'equal') {
-                        matchesFilterGoals = forward.goals === goals;
+                        matchesFilterGoals = footballer.goals === goals;
                     }
                 }
 
@@ -499,11 +499,11 @@ export default {
                     const intCaps = parseInt(filterIntCaps);
 
                     if (intCapsComparing === 'greater') {
-                        matchesFilterIntCaps = forward.intCaps > intCaps;
+                        matchesFilterIntCaps = footballer.intCaps > intCaps;
                     } else if (intCapsComparing === 'lower') {
-                        matchesFilterIntCaps = forward.intCaps < intCaps;
+                        matchesFilterIntCaps = footballer.intCaps < intCaps;
                     } else if (intCapsComparing === 'equal') {
-                        matchesFilterIntCaps = forward.intCaps === intCaps;
+                        matchesFilterIntCaps = footballer.intCaps === intCaps;
                     }
                 }
 
@@ -511,11 +511,11 @@ export default {
                     const intGoals = parseInt(filterIntGoals);
 
                     if (intGoalsComparing === 'greater') {
-                        matchesFilterIntGoals = forward.intGoals > intGoals;
+                        matchesFilterIntGoals = footballer.intGoals > intGoals;
                     } else if (intGoalsComparing === 'lower') {
-                        matchesFilterIntGoals = forward.intGoals < intGoals;
+                        matchesFilterIntGoals = footballer.intGoals < intGoals;
                     } else if (intGoalsComparing === 'equal') {
-                        matchesFilterIntGoals = forward.intGoals === intGoals;
+                        matchesFilterIntGoals = footballer.intGoals === intGoals;
                     }
                 }
 
@@ -527,12 +527,12 @@ export default {
         },
     },
     methods: {
-        async insertForward() {
+        async insertFootballer() {
             this.visible = false;
             try {
-                await axios.post('http://localhost:3000/api/v1/forwards', this.newForward);
-                this.getForwards();
-                this.newForward = {
+                await axios.post('http://localhost:3000/api/v1/forwards', this.newFootballer);
+                this.getFootballers();
+                this.newFootballer = {
                     newName: '',
                     newNationality: {
                         flag: '',
@@ -560,87 +560,86 @@ export default {
                 console.error('Error inserting forward:', error);
             }
         },
-        showEditDialog(forward) {
-            this.forward = { ...forward };
-            this.updatedForward.name = forward.name;
-            this.updatedForward.nationality.flag = forward.nationality.flag;
-            this.updatedForward.nationality.name = forward.nationality.name;
-            this.updatedForward.birthplace = forward.birthplace;
-            this.updatedForward.countryOfBirth.flag = forward.countryOfBirth.flag;
-            this.updatedForward.countryOfBirth.name = forward.countryOfBirth.name;
-            this.updatedForward.position = forward.position;
-            this.updatedForward.height = forward.height;
-            this.updatedForward.birthday = forward.birthday;
-            this.updatedForward.caps = forward.caps;
-            this.updatedForward.goals = forward.goals;
-            this.updatedForward.intCaps = forward.intCaps;
-            this.updatedForward.intGoals = forward.intGoals;
-            this.updatedForward.team.logo = forward.team.logo;
-            this.updatedForward.team.name = forward.team.name;
-            this.updatedForward.tc = forward.tc;
+        showEditDialog(footballer) {
+            this.footballer = { ...footballer };
+            this.updatedFootballer.name = footballer.name;
+            this.updatedFootballer.nationality.flag = footballer.nationality.flag;
+            this.updatedFootballer.nationality.name = footballer.nationality.name;
+            this.updatedFootballer.birthplace = footballer.birthplace;
+            this.updatedFootballer.countryOfBirth.flag = footballer.countryOfBirth.flag;
+            this.updatedFootballer.countryOfBirth.name = footballer.countryOfBirth.name;
+            this.updatedFootballer.position = footballer.position;
+            this.updatedFootballer.height = footballer.height;
+            this.updatedFootballer.birthday = footballer.birthday;
+            this.updatedFootballer.caps = footballer.caps;
+            this.updatedFootballer.goals = footballer.goals;
+            this.updatedFootballer.intCaps = footballer.intCaps;
+            this.updatedFootballer.intGoals = footballer.intGoals;
+            this.updatedFootballer.team.logo = footballer.team.logo;
+            this.updatedFootballer.team.name = footballer.team.name;
+            this.updatedFootballer.tc = footballer.tc;
             this.updateVisible = true;
         },
-        async updateForward() {
+        async updateFootballer() {
             this.updateVisible = false;
             try {
-                const response = await axios.put(`http://localhost:3000/api/v1/forwards/${this.forward.id}`, {
-                    ...this.forward,
-                    name: this.updatedForward.name,
+                const response = await axios.put(`http://localhost:3000/api/v1/forwards/${this.footballer.id}`, {
+                    ...this.footballer,
+                    name: this.updatedFootballer.name,
                     nationality: {
-                        flag: this.updatedForward.nationality.flag,
-                        name: this.updatedForward.nationality.name
+                        flag: this.updatedFootballer.nationality.flag,
+                        name: this.updatedFootballer.nationality.name
                     },
-                    birthplace: this.updatedForward.birthplace,
+                    birthplace: this.updatedFootballer.birthplace,
                     countryOfBirth: {
-                        flag: this.updatedForward.countryOfBirth.flag,
-                        name: this.updatedForward.countryOfBirth.name
+                        flag: this.updatedFootballer.countryOfBirth.flag,
+                        name: this.updatedFootballer.countryOfBirth.name
                     },
-                    position: this.updatedForward.position,
-                    height: this.updatedForward.height,
-                    birthday: this.updatedForward.birthday,
-                    caps: this.updatedForward.caps,
-                    goals: this.updatedForward.goals,
-                    intCaps: this.updatedForward.intCaps,
-                    intGoals: this.updatedForward.intGoals,
+                    position: this.updatedFootballer.position,
+                    height: this.updatedFootballer.height,
+                    birthday: this.updatedFootballer.birthday,
+                    caps: this.updatedFootballer.caps,
+                    goals: this.updatedFootballer.goals,
+                    intCaps: this.updatedFootballer.intCaps,
+                    intGoals: this.updatedFootballer.intGoals,
                     team: {
-                        logo: this.updatedForward.team.logo,
-                        name: this.updatedForward.team.name
+                        logo: this.updatedFootballer.team.logo,
+                        name: this.updatedFootballer.team.name
                     },
-                    tc: this.updatedForward.tc
+                    tc: this.updatedFootballer.tc
                 });
 
-                const index = this.forwards.findIndex(f => f.id === this.forward.id);
+                const index = this.footballers.findIndex(f => f.id === this.footballer.id);
 
                 if (index !== -1) {
-                    this.forwards.splice(index, 1, response.data);
+                    this.footballers.splice(index, 1, response.data);
                 }
 
-                this.forwards = [...this.forwards];
+                this.footballers = [...this.footballers];
             } catch (error) {
                 console.error('Error saving changes:', error);
             }
         },
-        getForwards() {
+        getFootballers() {
             axios.get('http://localhost:3000/api/v1/forwards')
             .then(response => {
-                this.forwards = response.data;
+                this.footballers = response.data;
             })
             .catch(error => {
                 console.error('Error fetching forwards', error);
             });
         },
-        deleteSelectedForwards() {
-            this.selectedForwards.forEach(id => {
+        deleteSelectedFootballers() {
+            this.selectedFootballers.forEach(id => {
                 axios.delete(`http://localhost:3000/api/v1/forwards/${id}`)
                 .then(() => {
-                    this.getForwards();
+                    this.getFootballers();
                 })
                 .catch(error => {
                     console.error('Error deleting forwards:', error);
                 });
             })
         },
-        applyFilters() {},
         sortByColumn(column) {
             if (column == this.sortBy) {
                 this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
@@ -651,12 +650,12 @@ export default {
 
             if ((column == "Height" || column == "Caps" || column == "Goals" || column == "IntCaps" ||
                 column == "IntGoals") && this.sortDirection == 'asc') {
-                    this.forwards.sort(function(a, b) { return a - b });
+                    this.footballers.sort(function(a, b) { return a - b });
             } else if ((column == "Height" || column == "Caps" || column == "Goals" || column == "IntCaps" ||
                 column == "IntGoals") && this.sortDirection == 'desc') {
-                    this.forwards.sort(function(a, b) { return b - a });
+                    this.footballers.sort(function(a, b) { return b - a });
             } else {
-                this.forwards.sort((a, b) => {
+                this.footballers.sort((a, b) => {
                     if (this.sortDirection === 'asc') {
                         return a[column] > b[column] ? 1 : -1;
                     } else {

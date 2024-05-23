@@ -124,31 +124,6 @@
       },
       "tc": "",
       "id": 5
-    },
-    {
-      "name": "",
-      "nationality": {
-        "flag": "",
-        "name": ""
-      },
-      "birthplace": "",
-      "countryOfBirth": {
-        "flag": "",
-        "name": ""
-      },
-      "position": "",
-      "height": 0,
-      "birthday": "",
-      "caps": 0,
-      "goals": 0,
-      "intCaps": 0,
-      "intGoals": 0,
-      "team": {
-        "logo": "",
-        "name": ""
-      },
-      "tc": "",
-      "id": 6
     }
   ],
   "midfielders": [],

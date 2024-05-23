@@ -101,7 +101,7 @@
                 <th>-</th>
                 <th>-</th>
                 <th>
-                    <select name="" id="" v-model="filters.heightComparing">
+                    <select name="" id="" class="selec-value" v-model="filters.heightComparing">
                         <option value="equal" selected>Equal</option>
                         <option value="greater">Greater</option>
                         <option value="lower">Lower</option>
@@ -109,14 +109,14 @@
                 </th>
                 <th>-</th>
                 <th>
-                    <select name="" id="" v-model="filters.capsComparing">
+                    <select name="" id="" class="selec-value" v-model="filters.capsComparing">
                         <option value="equal">Equal</option>
                         <option value="greater">Greater</option>
                         <option value="lower">Lower</option>
                     </select>
                 </th>
                 <th>
-                    <select name="" id="" v-model="filters.intCapsComparing">
+                    <select name="" id="" class="selec-value" v-model="filters.intCapsComparing">
                         <option value="equal">Equal</option>
                         <option value="greater">Greater</option>
                         <option value="lower">Lower</option>
@@ -250,9 +250,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="footballer in filteredFootballers" :key="footballer.id">
+            <tr v-for="footballer in filteredFootballers" :key="footballer._id">
                 <td>
-                    <input type="checkbox" v-model="selectedFootballers" :value="footballer.id" class="selector">
+                    <input type="checkbox" v-model="selectedFootballers" :value="footballer._id" class="selector">
                 </td>
                 <td>{{ footballer.name }}</td>
                 <td>
@@ -264,7 +264,7 @@
                     <img :src="footballer.countryOfBirth.flag" alt="" width="20" height="15">
                     {{ footballer.countryOfBirth.name }}
                 </td>
-                <td>{{ footballer.height.toFixed(2) }}</td>
+                <td>{{ footballer.height ? footballer.height.toFixed(2) : 0 }}</td>
                 <td>{{ footballer.birthday }}</td>
                 <td>{{ footballer.caps }}</td>
                 <td>{{ footballer.intCaps }}</td>
@@ -316,10 +316,12 @@ export default {
             filters: {
                 name: '',
                 nationality: {
+                    flag: '',
                     name: ''
                 },
                 birthplace: '',
                 countryOfBirth: {
+                    flag: '',
                     name: ''
                 },
                 height: null,
@@ -327,6 +329,7 @@ export default {
                 caps: null,
                 intCaps: null,
                 team: {
+                    logo: '',
                     name: ''
                 },
                 tc: '',
@@ -451,7 +454,7 @@ export default {
         async insertFootballer() {
             this.visible = false;
             try {
-                const response = await axios.post('http://localhost:3000/api/v1/goalkeepers', this.newFootballer);
+                const response = await axios.post('http://localhost:3000/goalkeepers', this.newFootballer);
                 this.footballers.push(response.data);
                 this.newFootballer = this.restartNewFootballer();
             } catch (error) {
@@ -479,7 +482,7 @@ export default {
         async updateFootballer() {
             this.updateVisible = false;
             try {
-                const response = await axios.put(`http://localhost:3000/api/v1/goalkeepers/${this.footballer.id}`, {
+                const response = await axios.put(`http://localhost:3000/goalkeepers/${this.footballer._id}`, {
                     ...this.footballer,
                     name: this.updatedFootballer.name,
                     nationality: {
@@ -514,18 +517,17 @@ export default {
                 console.error('Error saving changes:', error);
             }
         },
-        getFootballers() {
-            axios.get('http://localhost:3000/api/v1/goalkeepers')
-            .then(response => {
+        async getFootballers() {
+            try {
+                const response = await axios.get('http://localhost:3000/goalkeepers');
                 this.footballers = response.data;
-            })
-            .catch(error => {
-                console.error('Error fetching goalkeepers', error);
-            });
+            } catch (error) {
+                console.error('Error when fetching goalkeepers:', error);
+            }
         },
         deleteSelectedFootballers() {
             this.selectedFootballers.forEach(id => {
-                axios.delete(`http://localhost:3000/api/v1/goalkeepers/${id}`)
+                axios.delete(`http://localhost:3000/goalkeepers/${id}`)
                 .then(() => {
                     this.getFootballers();
                 })
@@ -640,6 +642,11 @@ h2 {
 .left, .right {
     display: flex;
     flex-direction: column;
+}
+
+.selec-value {
+    box-sizing: border-box;
+    padding: 2px;
 }
 
 .fw-table {
